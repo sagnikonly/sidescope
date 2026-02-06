@@ -9,11 +9,9 @@
 
 ## ✨ Features
 
-*   **🧠 Deep Context Awareness:** The AI understands your current tab. It can read:
-    *   **Page Content:** Summarize articles or analyze long papers.
-    *   **Selected Text:** Explain, translate, or refactor snippets of code/text you highlight.
-    *   **Metadata:** Uses page title and URL for better context.
-*   **👁️ Optical Character Recognition (OCR):** Built-in Tesseract.js integration allows you to select areas of the screen to extract text from images, videos, or protected PDFs.
+*   **🧠 Deep Context Awareness:** The AI understands your current tab. It can read and analyze page content to provide relevant answers.
+*   **🔢 Beautiful Math Rendering:** Built-in support for **LaTeX** and **KaTeX**. Whether you're studying calculus or reading scientific papers, SideScope renders complex mathematical equations perfectly in the chat.
+*   **👁️ Smart OCR & Scanning:** No more re-typing text from videos or images. Use the built-in **Snapshot Tool** to scan any part of the webpage, extract the text (OCR), and ask questions about it instantly.
 *   **🤖 Multi-Model Support:** Bring your own API keys. Supports:
     *   **Anthropic:** Claude 3.5 Sonnet, Claude 3 Opus
     *   **OpenAI:** GPT-4o, GPT-4 Turbo
