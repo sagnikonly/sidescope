@@ -1,0 +1,74 @@
+{
+    "manifest_version": 3,
+    "name": "SideScope",
+    "version": "1.0.0",
+    "description": "AI Browser Assistant with Page Context Awareness",
+    "background": {
+        "service_worker": "background.js",
+        "type": "module"
+    },
+    "permissions": [
+        "sidePanel",
+        "tabs",
+        "scripting",
+        "activeTab",
+        "storage",
+        "offscreen",
+        "clipboardWrite"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "content_security_policy": {
+        "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+    },
+    "action": {
+        "default_title": "Open SideScope"
+    },
+    "commands": {
+        "open-side-panel": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+S",
+                "mac": "Command+Shift+S"
+            },
+            "description": "Open AI Assistant"
+        },
+        "start-ocr": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+O",
+                "mac": "Command+Shift+O"
+            },
+            "description": "Start OCR text scan"
+        }
+    },
+    "side_panel": {
+        "default_path": "src/ui/sidePanel.html"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "contentScript.js"
+            ]
+        }
+    ],
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "assets/ocr/*",
+                "tesseract/*",
+                "tesseract/lang-data/*"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ]
+}

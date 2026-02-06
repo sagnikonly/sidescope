@@ -1,0 +1,283 @@
+:root {
+  /* Colors */
+  --primary: #007AFF;
+  --primary-gradient: linear-gradient(135deg, #007AFF 0%, #0051aa 100%);
+  --bg-color: #F5F7F9;
+  --surface: #FFFFFF;
+  --surface-secondary: #F0F2F5;
+  --text-main: #1C1E21;
+  --text-secondary: #606770;
+  --border-color: #E4E6EB;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-full: 999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  /* Font */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+  /* Glass & Overlay */
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --overlay-bg: rgba(255, 255, 255, 0.95);
+  --input-bg: rgba(255, 255, 255, 0.9);
+}
+
+[data-theme='dark'] {
+  --primary: #0A84FF;
+  --primary-gradient: linear-gradient(135deg, #0A84FF 0%, #0060C9 100%);
+  --bg-color: #000000;
+  /* Deepest black for OLED/Premium feel */
+  --surface: #1C1C1E;
+  --surface-secondary: #2C2C2E;
+  --text-main: #FFFFFF;
+  --text-secondary: #8E8E93;
+  --border-color: #38383A;
+
+  /* Glass & Overlay Dark */
+  --glass-bg: rgba(28, 28, 30, 0.85);
+  /* Matches surface but transparent */
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --overlay-bg: rgba(28, 28, 30, 0.95);
+  --input-bg: rgba(28, 28, 30, 0.9);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.6), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+}
+
+/* KaTeX Dark Mode Support */
+[data-theme='dark'] .katex,
+[data-theme='dark'] .katex-display,
+[data-theme='dark'] .katex-html {
+  color: #FFFFFF !important;
+}
+
+[data-theme='dark'] .katex .mord,
+[data-theme='dark'] .katex .mrel,
+[data-theme='dark'] .katex .mop,
+[data-theme='dark'] .katex .mbin,
+[data-theme='dark'] .katex .mpunct,
+[data-theme='dark'] .katex .minner,
+[data-theme='dark'] .katex .mopen,
+[data-theme='dark'] .katex .mclose {
+  color: #FFFFFF !important;
+}
+
+[data-theme='dark'] .katex .base,
+[data-theme='dark'] .katex .strut {
+  color: inherit !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C1C1C1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A8A8A8;
+}
+
+/* Utility Classes */
+.glass-header {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.btn-icon {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+  color: var(--text-secondary);
+}
+
+.btn-icon:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--text-main);
+}
+
+.btn-primary {
+  background: var(--primary-gradient);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.2s;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: var(--surface-secondary);
+}
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+}
+
+/* Agent Spinner Animation */
+@keyframes agentSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.agent-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(79, 70, 229, 0.2);
+  border-top-color: #4F46E5;
+  border-radius: 50%;
+  animation: agentSpin 0.8s linear infinite;
+}
+
+/* Agent step animations */
+@keyframes stepSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.agent-step {
+  animation: stepSlideIn 0.3s ease-out forwards;
+}
+
+/* Agent button pulse */
+@keyframes agentPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(79, 70, 229, 0);
+  }
+}
+
+.agent-btn-active {
+  animation: agentPulse 2s infinite;
+}
