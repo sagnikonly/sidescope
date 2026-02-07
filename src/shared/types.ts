@@ -65,7 +65,7 @@ export interface PageContext {
     mainContentSnippet?: string;
     htmlSource?: string;
     screenshot?: string;
-    
+
     // New enhanced fields
     metadata?: ContentMetadata;
     quality?: ContentQuality;
@@ -150,7 +150,7 @@ export interface ContextPreferences {
     includeScreenshot: boolean;
     includeMetadata: boolean;
     includeImageOCR: boolean; // NEW: OCR important images
-    
+
     // Quality/performance settings
     quality: 'fast' | 'balanced' | 'thorough'; // extraction thoroughness
     maxTokens: number; // token budget limit
@@ -285,7 +285,8 @@ export const DEFAULT_PROVIDERS: AIProvider[] = [
     { id: 'openrouter', name: 'OpenRouter', baseUrl: 'https://openrouter.ai/api/v1/chat/completions', requiresApiKey: true, authHeader: 'Authorization' },
     { id: 'openai', name: 'OpenAI', baseUrl: 'https://api.openai.com/v1/chat/completions', requiresApiKey: true, authHeader: 'Authorization' },
     { id: 'gemini', name: 'Gemini', baseUrl: 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions', requiresApiKey: true, authHeader: 'Authorization' },
-    { id: 'moonshot', name: 'Moonshot AI', baseUrl: 'https://api.moonshot.ai/v1/chat/completions', requiresApiKey: true, authHeader: 'Authorization' },
+    { id: 'moonshot', name: 'Moonshot AI (Global)', baseUrl: 'https://api.moonshot.ai/v1/chat/completions', requiresApiKey: true, authHeader: 'Authorization' },
+    { id: 'moonshot-cn', name: 'Moonshot AI (China)', baseUrl: 'https://api.moonshot.cn/v1/chat/completions', requiresApiKey: true, authHeader: 'Authorization' },
 ];
 
 /** Default agent configuration */

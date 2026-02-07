@@ -81,7 +81,7 @@ export async function validateApiKey(providerId: string, apiKey: string): Promis
         let testModel = 'gpt-4o-mini'; // Default for OpenAI-compatible
         if (providerId === 'gemini') {
             testModel = 'gemini-2.0-flash';
-        } else if (providerId === 'moonshot') {
+        } else if (providerId === 'moonshot' || providerId === 'moonshot-cn') {
             testModel = 'kimi-k2.5';
         } else if (providerId === 'jarvis') {
             testModel = 'claude-4-5-sonnet';
