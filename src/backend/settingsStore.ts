@@ -8,6 +8,7 @@ const DEFAULT_MODELS: AIModel[] = [
     { id: 'openrouter-gpt4o', providerId: 'openrouter', backendName: 'openai/gpt-4o', displayName: 'GPT-4o', enabled: false },
     { id: 'openai-gpt4o', providerId: 'openai', backendName: 'gpt-4o', displayName: 'GPT-4o (OpenAI)', enabled: false },
     { id: 'gemini-flash', providerId: 'gemini', backendName: 'gemini-2.0-flash', displayName: 'Gemini 2.0 Flash', enabled: false },
+    { id: 'moonshot-kimi-k2.5', providerId: 'moonshot', backendName: 'kimi-k2.5', displayName: 'Kimi K2.5 (Moonshot)', enabled: false },
 ];
 
 const DEFAULT_PROVIDER_CONFIGS: Record<string, ProviderConfig> = {
@@ -15,6 +16,7 @@ const DEFAULT_PROVIDER_CONFIGS: Record<string, ProviderConfig> = {
     openrouter: { apiKey: '' },
     openai: { apiKey: '' },
     gemini: { apiKey: '' },
+    moonshot: { apiKey: '' },
 };
 
 export function getDefaultSettings(): ExtensionSettings {

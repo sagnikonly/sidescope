@@ -16,6 +16,7 @@
     *   **Anthropic:** Claude 3.5 Sonnet, Claude 3 Opus
     *   **OpenAI:** GPT-4o, GPT-4 Turbo
     *   **Google:** Gemini 1.5 Pro/Flash
+    *   **Moonshot AI:** Kimi K2.5
     *   **OpenRouter:** Access to DeepSeek, Llama 3, and more.
 *   **⚡ Fast & Lightweight:** Built with Vite and React for instant load times.
 *   **🔒 Privacy Focused:** Your API keys are stored locally in your browser (`chrome.storage.local`). No intermediate servers.

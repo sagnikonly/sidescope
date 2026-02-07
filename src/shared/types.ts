@@ -285,6 +285,7 @@ export const DEFAULT_PROVIDERS: AIProvider[] = [
     { id: 'openrouter', name: 'OpenRouter', baseUrl: 'https://openrouter.ai/api/v1/chat/completions', requiresApiKey: true, authHeader: 'Authorization' },
     { id: 'openai', name: 'OpenAI', baseUrl: 'https://api.openai.com/v1/chat/completions', requiresApiKey: true, authHeader: 'Authorization' },
     { id: 'gemini', name: 'Gemini', baseUrl: 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions', requiresApiKey: true, authHeader: 'Authorization' },
+    { id: 'moonshot', name: 'Moonshot AI', baseUrl: 'https://api.moonshot.ai/v1/chat/completions', requiresApiKey: true, authHeader: 'Authorization' },
 ];
 
 /** Default agent configuration */
