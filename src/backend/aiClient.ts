@@ -26,7 +26,7 @@ async function retryWithBackoff<T>(
             return await fn();
         } catch (error) {
             lastError = error as Error;
-            
+
             // Don't retry on user cancellation or auth errors
             if (error instanceof Error) {
                 if (error.name === 'AbortError' || error.message.includes('401') || error.message.includes('403')) {
@@ -77,8 +77,20 @@ export async function validateApiKey(providerId: string, apiKey: string): Promis
             headers['Authorization'] = `Bearer ${apiKey}`;
         }
 
+        // Use provider-specific test models
+        let testModel = 'gpt-4o-mini'; // Default for OpenAI-compatible
+        if (providerId === 'gemini') {
+            testModel = 'gemini-2.0-flash';
+        } else if (providerId === 'moonshot') {
+            testModel = 'kimi-k2.5';
+        } else if (providerId === 'jarvis') {
+            testModel = 'claude-4-5-sonnet';
+        } else if (providerId === 'openrouter') {
+            testModel = 'openai/gpt-4o-mini';
+        }
+
         const testBody = JSON.stringify({
-            model: 'gpt-4o-mini', // Use a cheap model for testing
+            model: testModel,
             messages: [{ role: 'user', content: 'hi' }],
             max_tokens: 5
         });
@@ -117,12 +129,12 @@ function buildContextPrompt(
     customSystemPrompt?: string
 ): string {
     let contextPrompt = '';
-    
+
     // Add custom system prompt first if provided
     if (customSystemPrompt && customSystemPrompt.trim()) {
         contextPrompt += `${customSystemPrompt.trim()}\n\n`;
     }
-    
+
     contextPrompt += `You are a helpful assistant with access to the current webpage. Use this context to answer questions:\n\n`;
 
     if (preferences.includeUrl && pageContext.url) {
@@ -152,7 +164,7 @@ function buildContextPrompt(
     }
 
     contextPrompt += `\nUse the above page content${preferences.includeHtml ? ' and HTML structure' : ''} to provide accurate, contextual answers.`;
-    
+
     if (preferences.includeHtml) {
         contextPrompt += ` The HTML shows the page structure including classes, IDs, and data attributes that may be helpful.`;
     }
@@ -297,16 +309,16 @@ export async function callAI(request: AIRequestPayload): Promise<AIResponsePaylo
     // 9. Make request with retry logic
     try {
         return await retryWithBackoff(async () => {
-            const res = await fetch(baseUrl, { 
-                method: 'POST', 
-                headers, 
+            const res = await fetch(baseUrl, {
+                method: 'POST',
+                headers,
                 body,
-                signal 
+                signal
             });
 
             if (!res.ok) {
                 const text = await res.text();
-                
+
                 // Provide better error messages
                 if (res.status === 401) {
                     throw new Error(`Authentication failed: Invalid API key for ${provider.name}`);
@@ -317,7 +329,7 @@ export async function callAI(request: AIRequestPayload): Promise<AIResponsePaylo
                 } else if (res.status >= 500) {
                     throw new Error(`${provider.name} server error (${res.status}). Please try again.`);
                 }
-                
+
                 throw new Error(`AI API error (${provider.name}): ${res.status} ${text.substring(0, 200)}`);
             }
 
